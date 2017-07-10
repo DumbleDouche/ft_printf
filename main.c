@@ -31,7 +31,7 @@
 
 int		main(void)
 {
-	ft_printf("ouio oiu %% %d %1d oiuo\n");
+	ft_printf("ouio oiu %d oiuo\n", 12341234212341);
 	
 	return (0);
 }

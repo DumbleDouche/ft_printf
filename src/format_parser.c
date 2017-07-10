@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:36:51 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 09:01:20 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/10 20:41:22 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ int8_t			contains(const char *s, char c)
 		++i;
 	}
 	return (0);
+}
+
+size_t			loc_conv(const char *s)
+{
+	size_t		i;
+
+	i = 0;
+	while (s[i] && s[i] != '%')
+		++i;
+	return (i);
 }
 
 size_t			arg_size(const char *s)
@@ -80,14 +90,14 @@ t_args			format_string_parser(const char *s)
 	{
 		if (s[i] == '%')
 		{
-			// i += arg_size(s + i + 1);
-			++count;
 			++i;
-			args.list[i].flags = flag(s, &i);
-			args.list[i].width = width(s, &i);
-			args.list[i].precision = precision(s, &i);
-			args.list[i].length = length(s, &i);
-			args.list[i].specifier = specifier(s, &i);
+			args.list[count].flags = flag(s, &i);
+			args.list[count].width = width(s, &i);
+			args.list[count].precision = precision(s, &i);
+			args.list[count].length = length(s, &i);
+			args.list[count].specifier = specifier(s, &i);
+			// printf("this is the result: |%c| index: |%zu|\n", args.list[count].specifier, count);
+			++count;
 		}
 		else
 			++i;

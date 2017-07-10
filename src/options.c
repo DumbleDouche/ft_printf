@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:25:20 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 09:03:13 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/10 20:40:58 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ unsigned char		specifier(const char *s, size_t *i)
 	if (contains(SPECIFIERS, s[*i]))
 	{
 		(*i) += 2;
-		return (s[*i]);
+		// printf("this is the char: |%c|\n", s[*i - 2]);
+		return (s[*i - 2]);
 	}
 	return (0);
 }

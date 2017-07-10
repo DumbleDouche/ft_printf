@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/09 10:58:17 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 20:39:12 by rchoquer         ###   ########.fr       */
+/*   Created: 2017/07/10 19:46:23 by rchoquer          #+#    #+#             */
+/*   Updated: 2017/07/10 20:18:25 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int			ft_printf(const char *format, ...)
+int			core(va_list alist, t_args args, size_t index)
 {
-	size_t			i;
-	t_args			args;
-	va_list			ap;
-
-	i = 0;
-	args = format_string_parser(format);
-	if (format)
-	{
-		va_start(ap, format);
-		while (i < args.len)
-		{
-			ft_putnstr(format, loc_conv(format));
-			core(ap, args, i);
-			++i;
-		}
-		va_end(ap);
-	}
+	if (type(args, index) == 'd')
+		ft_putnbr(va_arg(alist, int));
 	return (0);
 }

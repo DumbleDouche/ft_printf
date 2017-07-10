@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ints.c                                             :+:      :+:    :+:   */
+/*   type.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 05:35:01 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 09:00:45 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/10 20:40:31 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-void		ints(char c)
+char		type(t_args args, size_t index)
 {
-	if (c == 'd')
-	{
-		;
-	}
+	// printf("type: |%c| index: |%zu|\n", args.list[index].specifier, index);
+	if (contains(INTS, args.list[index].specifier))
+		return ('d');
+	return (0);
 }
