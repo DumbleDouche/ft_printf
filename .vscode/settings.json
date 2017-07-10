@@ -1,0 +1,16 @@
+{
+	"[c]": {
+		"editor.quickSuggestions": false
+	},
+	"files.associations": {
+		"_size_t.h": "c",
+		"ft_printf.h": "c",
+		"_va_list.h": "c",
+		"cdefs.h": "c",
+		"stdio.h": "c",
+		"stdarg.h": "c",
+		"cstdarg": "c",
+		"c++config.h": "c",
+		"os_defines.h": "c"
+	}
+}
