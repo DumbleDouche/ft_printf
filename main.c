@@ -31,7 +31,7 @@
 
 int		main(void)
 {
-	ft_printf("%douio odiu %d ah bon ? %d c'est vrai %d \n", 431, 654357, 1234, 14123);
+	ft_printf("%d %d %d %d\n", 431, 654357, 1234, 14123);
 	
 	return (0);
 }

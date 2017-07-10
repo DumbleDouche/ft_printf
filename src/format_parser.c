@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:36:51 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 22:58:34 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 00:12:59 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ t_args			format_string_parser(const char *s)
 			args.list[count].length = length(s, &i);
 			args.list[count].specifier = specifier(s, &i);
 			args.list[count].index = i - 1;
-			// printf("this is the result: |%c| index: |%zu|\n", args.list[count].specifier, count);
 			++count;
 		}
 		else
