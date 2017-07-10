@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:47:16 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 06:44:29 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/10 22:31:10 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static inline void	setup_arg(t_arg *arg)
 {
+	arg->index = 0;
 	arg->width = 0;
 	arg->precision = 0;
 	arg->flags = 0;
@@ -28,6 +29,7 @@ t_args				setup_args(size_t n)
 
 	i = 0;
 	args.len = n;
+	args.printed = 0;
 	args.list = (t_arg*)MALLOC(sizeof(t_arg), n);
 	while (i < n)
 	{

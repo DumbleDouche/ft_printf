@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 10:58:17 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 20:39:12 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/10 22:53:45 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,12 @@ int			ft_printf(const char *format, ...)
 	if (format)
 	{
 		va_start(ap, format);
+		args.printed += ft_putnstr(format, loc_conv(format));
 		while (i < args.len)
 		{
-			ft_putnstr(format, loc_conv(format));
-			core(ap, args, i);
+			args.printed += core(ap, args, i);
+			args.printed += ft_putnstr(format + args.list[i].index,
+			loc_conv(format + args.list[i].index));
 			++i;
 		}
 		va_end(ap);

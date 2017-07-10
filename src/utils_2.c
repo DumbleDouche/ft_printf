@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   type.c                                             :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/10 05:35:01 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 21:09:57 by rchoquer         ###   ########.fr       */
+/*   Created: 2017/07/10 21:41:26 by rchoquer          #+#    #+#             */
+/*   Updated: 2017/07/10 22:32:15 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
+#include <unistd.h>
 
-char		type(t_args args, size_t index)
+void		ft_putchar(char c)
 {
-	// printf("type: |%c| index: |%zu|\n", args.list[index].specifier, index);
-	if (contains(INTS, args.list[index].specifier))
-		return ('d');
-	return (0);
+	write(1, &c, 1);
 }
