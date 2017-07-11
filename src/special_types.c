@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   special_types.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/09 22:47:16 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:55:49 by rchoquer         ###   ########.fr       */
+/*   Created: 2017/07/11 09:52:53 by rchoquer          #+#    #+#             */
+/*   Updated: 2017/07/11 12:01:46 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static inline void	setup_arg(t_arg *arg)
+size_t		special_types(va_list l, t_args args, size_t i)
 {
-	arg->index = 0;
-	arg->width = 1;
-	arg->precision = 1;
-	arg->flags = 0;
-	arg->length = 0;
-	arg->specifier = 0;
-}
-
-t_args				setup_args(size_t n)
-{
-	size_t		i;
-	t_args		args;
-
-	i = 0;
-	args.len = n;
-	args.printed = 0;
-	args.list = (t_arg*)MALLOC(sizeof(t_arg), n);
-	while (i < n)
-	{
-		setup_arg(&(args.list[i]));
-		++i;
-	}
-	return (args);
+	if (SPE == 'p')
+		return (ft_putnstr("0x", 2) + ft_putnbr(va_arg(l, _UL), 'x', WID));
+	else if (SPE == '%')
+		return (ft_putchar('%'));
+	else
+		return (0);
 }

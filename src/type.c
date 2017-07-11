@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 05:35:01 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 06:03:51 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 10:13:54 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char		type(t_args args, size_t i)
 		c = (SPE == 'G') ? 0b10001000 : 0b00001000;
 	else if (SPE == 'p')
 		c = 0b00010000;
+	else if (SPE == '%')
+		c = 0b00100000;
 	else
 		c = 0b11111111;
 	return (c);

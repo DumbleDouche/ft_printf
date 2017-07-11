@@ -6,74 +6,74 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/11 07:38:10 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 08:08:34 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 11:47:53 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-size_t			c_shorts(va_list l, t_args args, size_t i, char c)
+size_t			i_shorts(va_list l, t_args args, size_t i)
 {
 	if (LEN == 1)
 	{
-		if (c == 1)
-			return (ft_putnbr_u((_US)va_arg(l, _UI), SPE));
+		if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
+			return (ft_putnbr_u((_US)va_arg(l, _UI), SPE, WID));
 		else
-			return (ft_putnbr((_S)va_arg(l, _I), SPE));
+			return (ft_putnbr((_S)va_arg(l, _I), SPE, WID));
 	}
 	else
 	{
-		if (c == 1)
-			return (ft_putnbr_u((_UC)va_arg(l, _UI), SPE));
+		if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
+			return (ft_putnbr_u((_UC)va_arg(l, _UI), SPE, WID));
 		else
-			return (ft_putnbr((_C)va_arg(l, _I), SPE));
+			return (ft_putnbr((_C)va_arg(l, _I), SPE, WID));
 	}
 }
 
-size_t			c_ints(va_list l, t_args args, size_t i, char c)
+size_t			i_ints(va_list l, t_args args, size_t i)
 {
-	if (c == 1)
-		return (ft_putnbr_u((_UI)va_arg(l, _UI), SPE));
+	if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
+		return (ft_putnbr_u((_UI)va_arg(l, _UI), SPE, WID));
 	else
-		return (ft_putnbr((_I)va_arg(l, _I), SPE));
+		return (ft_putnbr((_I)va_arg(l, _I), SPE, WID));
 }
 
-size_t			c_longs(va_list l, t_args args, size_t i, char c)
+size_t			i_longs(va_list l, t_args args, size_t i)
 {
 	if (LEN == 2)
 	{
-		if (c == 1)
-			return (ft_putnbr_u((_UL)va_arg(l, _UL), SPE));
+		if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
+			return (ft_putnbr_u((_UL)va_arg(l, _UL), SPE, WID));
 		else
-			return (ft_putnbr((_L)va_arg(l, _L), SPE));
+			return (ft_putnbr((_L)va_arg(l, _L), SPE, WID));
 	}
 	else
 	{
-		if (c == 1)
-			return (ft_putnbr_u((_ULL)va_arg(l, _ULL), SPE));
+		if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
+			return (ft_putnbr_u((_ULL)va_arg(l, _ULL), SPE, WID));
 		else
-			return (ft_putnbr((_LL)va_arg(l, _LL), SPE));
+			return (ft_putnbr((_LL)va_arg(l, _LL), SPE, WID));
 	}
 }
 
-size_t			c_intmax(va_list l, t_args args, size_t i, char c)
+size_t			i_intmax(va_list l, t_args args, size_t i)
 {
-	if (c == 1)
-		return (ft_putnbr_u((_UM)va_arg(l, _UM), SPE));
+	if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
+		return (ft_putnbr_u((_UM)va_arg(l, _UM), SPE, WID));
 	else
-		return (ft_putnbr((_M)va_arg(l, _M), SPE));
+		return (ft_putnbr((_M)va_arg(l, _M), SPE, WID));
 }
 
-size_t			int_types(va_list l, t_args args, size_t i, char c)
+size_t			int_types(va_list l, t_args args, size_t i)
 {
 	if (LEN == 0)
-		return (c_ints(l, args, i, c));
+		return (i_ints(l, args, i));
 	else if (LEN == 1 || LEN == -1)
-		return (c_shorts(l, args, i, c));
+		return (i_shorts(l, args, i));
 	else if (LEN == 2 || LEN == -2)
-		return (c_longs(l, args, i, c));
+		return (i_longs(l, args, i));
 	else if (LEN == 4 || LEN == 8)
-		return (c_intmax(l, args, i, c));
+		return (i_intmax(l, args, i));
 	else
 		return (-1);
 }

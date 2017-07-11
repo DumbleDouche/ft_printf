@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   data_string.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/09 22:47:16 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:55:49 by rchoquer         ###   ########.fr       */
+/*   Created: 2017/07/11 11:00:21 by rchoquer          #+#    #+#             */
+/*   Updated: 2017/07/11 11:01:07 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../include/printf.h"
 
-static inline void	setup_arg(t_arg *arg)
+size_t			ft_strlen(const char *s)
 {
-	arg->index = 0;
-	arg->width = 1;
-	arg->precision = 1;
-	arg->flags = 0;
-	arg->length = 0;
-	arg->specifier = 0;
-}
-
-t_args				setup_args(size_t n)
-{
-	size_t		i;
-	t_args		args;
+	size_t	i;
 
 	i = 0;
-	args.len = n;
-	args.printed = 0;
-	args.list = (t_arg*)MALLOC(sizeof(t_arg), n);
-	while (i < n)
-	{
-		setup_arg(&(args.list[i]));
+	while (s[i])
 		++i;
-	}
-	return (args);
+	return (i);
+}
+
+unsigned char	ft_tolower(unsigned char c)
+{
+	if (c >= 65 && c <= 90)
+		return (c + 32);
+	return (c);
 }

@@ -54,6 +54,7 @@ dkms.conf
 #custom
 
 test.c
+main.c
 
 #visual studio
 

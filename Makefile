@@ -6,18 +6,21 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/11 00:20:35 by rchoquer          #+#    #+#              #
-#    Updated: 2017/07/11 07:43:35 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/07/11 12:06:26 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			=	ft_printf.a
+NAME			=	libftprintf.a
 PROJECT			=	FT_PRINTF
 
 CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
 
-SRC_NAME		=	core.c	format_parser.c	ft_printf.c	init.c	options.c	type.c \
-					numbers.c	strings.c	int_types.c
+SRC_NAME		=	core.c			format_parser.c			ft_printf.c		\
+					init.c			options.c				type.c 			\
+					output_number.c	output_string.c			int_types.c		\
+					string_types.c	special_types.c			data_string.c
+					
 
 OBJ_NAME		=	$(SRC_NAME:.c=.o)
 INC_NAME		=	ft_printf.h

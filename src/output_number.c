@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   numbers.c                                          :+:      :+:    :+:   */
+/*   output_number.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 21:24:03 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 07:52:31 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 11:55:03 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,39 +68,49 @@ void		ft_putnbr_r(uintmax_t n, size_t base, char l)
 		ft_putchar(l ? HEXU[n] : HEXL[n]);
 }
 
-size_t		ft_putnbr(intmax_t nb, char c)
+size_t		ft_putnbr(intmax_t nb, char c, size_t width)
 {
 	size_t				base;
+	size_t				digi;
 	uintmax_t			ret;
 
 	base = 0;
+	digi = 0;
 	if (TL(c) == 'o')
 		base = 8;
 	else if (TL(c) == 'x')
 		base = 16;
 	else
 		base = 10;
+	digi = digits(nb, base);
 	ret = nb;
 	if (nb < 0)
 	{
 		ft_putchar('-');
 		ret *= -1;
 	}
+	if (digi < width)
+		ft_nputchar(' ', width - digi);
 	ft_putnbr_r(ret, base, c == 'x' ? 0 : 1);
-	return (digits(nb, base));
+	return (digi > width ? digi : width);
 }
 
-size_t		ft_putnbr_u(uintmax_t nb, char c)
+size_t		ft_putnbr_u(uintmax_t nb, char c, size_t width)
 {
 	size_t				base;
+	size_t				digi;
 
 	base = 0;
+	digi = 0;
 	if (TL(c) == 'o')
 		base = 8;
 	else if (TL(c) == 'x')
 		base = 16;
 	else
 		base = 10;
+	digi = digits(nb, base);
+	if (digi < width)
+		ft_nputchar(' ', width - digi);
 	ft_putnbr_r(nb, base, c == 'x' ? 0 : 1);
-	return (digits(nb, base));
+	return (digi > width ? digi : width);
 }

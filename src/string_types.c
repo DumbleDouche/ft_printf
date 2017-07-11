@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   string_types.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/09 22:47:16 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:55:49 by rchoquer         ###   ########.fr       */
+/*   Created: 2017/07/11 09:12:29 by rchoquer          #+#    #+#             */
+/*   Updated: 2017/07/11 12:02:34 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static inline void	setup_arg(t_arg *arg)
-{
-	arg->index = 0;
-	arg->width = 1;
-	arg->precision = 1;
-	arg->flags = 0;
-	arg->length = 0;
-	arg->specifier = 0;
-}
+// size_t		s_wchar(va_list l, t_args args, size_t i);
+// size_t		s_wstr(va_list l, t_args args, size_t i);
 
-t_args				setup_args(size_t n)
+size_t		string_types(va_list l, t_args args, size_t i)
 {
-	size_t		i;
-	t_args		args;
-
-	i = 0;
-	args.len = n;
-	args.printed = 0;
-	args.list = (t_arg*)MALLOC(sizeof(t_arg), n);
-	while (i < n)
-	{
-		setup_arg(&(args.list[i]));
-		++i;
-	}
-	return (args);
+	if (SPE == 's')
+		return (ft_putstr(va_arg(l, char *), WID));
+	else if (SPE == 'c')
+		return (ft_wputchar(va_arg(l, unsigned int), WID));
+	// else if (SPE == 'S')
+	// 	return (s_wstr(l, args, i));
+	// else if (SPE == 'C')
+	// 	return (s_wstr(l, args, i));
+	else
+		return (0);
 }

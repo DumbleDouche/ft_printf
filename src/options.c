@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:25:20 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 07:25:52 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 11:57:53 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ char				flag(const char *s, size_t *i)
 	|| s[*i] == '#' || s[*i] == '0'))
 	{
 		if (s[*i] == '-')
-			f |= 0b00000001;
+			f = 0b00000001;
 		else if (s[*i] == '+')
-			f |= 0b00000010;
+			f = 0b00000010;
 		else if (s[*i] == ' ')
-			f |= 0b00000100;
+			f = 0b00000100;
 		else if (s[*i] == '#')
-			f |= 0b00001000;
+			f = 0b00001000;
 		else if (s[*i] == '0')
-			f |= 0b00010000;
+			f = 0b00010000;
 		++(*i);
 	}
 	return (f);
@@ -68,7 +68,7 @@ size_t				width(const char *s, size_t *i)
 	ret = ft_atoi(s + *i);
 	while (s[*i] && s[*i] >= '0' && s[*i] <= '9')
 		++(*i);
-	return (ret);
+	return (ret > 1 ? ret : 1);
 }
 
 size_t				precision(const char *s, size_t *i)
@@ -82,7 +82,7 @@ size_t				precision(const char *s, size_t *i)
 	}
 	while (s[*i] && s[*i] >= '0' && s[*i] <= '9')
 		++(*i);
-	return (ret);
+	return (ret > 1 ? ret : 1);
 }
 
 char				specifier(const char *s, size_t *i)
