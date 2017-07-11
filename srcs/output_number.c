@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 21:24:03 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 23:55:59 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/12 00:02:23 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ size_t		ft_putnbr_u(uintmax_t nb, char c, size_t width, char flag)
 	size_t				digi;
 
 	base = get_base(c);
-	digi = digits(nb, base);
+	digi = udigits(nb, base);
 	if (flag & 1)
 	{
 		ft_putnbr_r(nb, base, c == 'x' ? 0 : 1);

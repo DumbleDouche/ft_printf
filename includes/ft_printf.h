@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 12:41:04 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 23:36:18 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/12 00:03:44 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ size_t						i_shorts(va_list l, t_args args, size_t i);
 size_t						i_ints(va_list l, t_args args, size_t i);
 size_t						i_longs(va_list l, t_args args, size_t i);
 size_t						i_intmax(va_list l, t_args args, size_t i);
-size_t						digits(long nbr, unsigned int base);
+size_t						digits(intmax_t nbr, unsigned int base);
+size_t						udigits(uintmax_t nbr, unsigned int base);
 size_t						get_base(char c);
 size_t						string_types(va_list l, t_args args, size_t i);
 size_t						special_types(va_list l, t_args args, size_t i);
