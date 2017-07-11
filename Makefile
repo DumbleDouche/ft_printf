@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/11 00:20:35 by rchoquer          #+#    #+#              #
-#    Updated: 2017/07/11 00:31:06 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/07/11 07:43:35 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC				=	gcc
 CFLAGS			=	-Wall -Wextra -Werror
 
 SRC_NAME		=	core.c	format_parser.c	ft_printf.c	init.c	options.c	type.c \
-					utils_1.c	utils_2.c
+					numbers.c	strings.c	int_types.c
 
 OBJ_NAME		=	$(SRC_NAME:.c=.o)
 INC_NAME		=	ft_printf.h

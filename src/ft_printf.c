@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 10:58:17 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/10 22:53:45 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 07:03:09 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int			ft_printf(const char *format, ...)
 		}
 		va_end(ap);
 	}
-	return (0);
+	return (args.printed);
 }

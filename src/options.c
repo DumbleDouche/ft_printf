@@ -6,15 +6,15 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:25:20 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 00:29:35 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 07:25:52 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-unsigned char		flag(const char *s, size_t *i)
+char				flag(const char *s, size_t *i)
 {
-	unsigned char	f;
+	char	f;
 
 	f = 0;
 	while (s[*i] && (s[*i] == '-' || s[*i] == '+' || s[*i] == ' '
@@ -35,24 +35,29 @@ unsigned char		flag(const char *s, size_t *i)
 	return (f);
 }
 
-unsigned char		length(const char *s, size_t *i)
+char				length(const char *s, size_t *i)
 {
-	unsigned char	f;
+	char	f;
 
 	f = 0;
-	while (s[*i] && (s[*i] == 'h' || s[*i] == 'l' || s[*i] == 'j'
-	|| s[*i] == 'z'))
+	if (s[*i] == 'h')
 	{
-		if (s[*i] == 'h')
-			f |= f | 1 ? 0b00000010 : 0b00000001;
-		else if (s[*i] == 'l')
-			f |= f | 4 ? 0b00001000 : 0b00000100;
-		else if (s[*i] == 'j')
-			f |= 0b01000000;
-		else if (s[*i] == 'z')
-			f |= 0b10000000;
 		++(*i);
+		f = 0b00000001;
+		if (s[*i] == 'h' && ++(*i))
+			f = 0b10000001;
 	}
+	else if (s[*i] == 'l')
+	{
+		++(*i);
+		f = 0b00000010;
+		if (s[*i] == 'l' && ++(*i))
+			f = 0b10000010;
+	}
+	else if (s[*i] == 'j' && ++(*i))
+		f = 0b00000100;
+	else if (s[*i] == 'z' && ++(*i))
+		f = 0b00001000;
 	return (f);
 }
 
@@ -80,7 +85,7 @@ size_t				precision(const char *s, size_t *i)
 	return (ret);
 }
 
-unsigned char		specifier(const char *s, size_t *i)
+char				specifier(const char *s, size_t *i)
 {
 	if (contains(SPECIFIERS, s[*i]))
 	{
