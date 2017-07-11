@@ -6,67 +6,69 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/11 07:38:10 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:47:53 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 21:54:56 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 size_t			i_shorts(va_list l, t_args args, size_t i)
 {
 	if (LEN == 1)
 	{
 		if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
-			return (ft_putnbr_u((_US)va_arg(l, _UI), SPE, WID));
+			return (ft_putnbr_u((_US)va_arg(l, _UI), SPE, WID, FLA));
 		else
-			return (ft_putnbr((_S)va_arg(l, _I), SPE, WID));
+			return (ft_putnbr((_S)va_arg(l, _I), SPE, WID, FLA));
 	}
 	else
 	{
 		if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
-			return (ft_putnbr_u((_UC)va_arg(l, _UI), SPE, WID));
+			return (ft_putnbr_u((_UC)va_arg(l, _UI), SPE, WID, FLA));
 		else
-			return (ft_putnbr((_C)va_arg(l, _I), SPE, WID));
+			return (ft_putnbr((_C)va_arg(l, _I), SPE, WID, FLA));
 	}
 }
 
 size_t			i_ints(va_list l, t_args args, size_t i)
 {
 	if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
-		return (ft_putnbr_u((_UI)va_arg(l, _UI), SPE, WID));
+		return (ft_putnbr_u((_UI)va_arg(l, _UI), SPE, WID, FLA));
 	else
-		return (ft_putnbr((_I)va_arg(l, _I), SPE, WID));
+		return (ft_putnbr((_I)va_arg(l, _I), SPE, WID, FLA));
 }
 
 size_t			i_longs(va_list l, t_args args, size_t i)
 {
 	if (LEN == 2)
 	{
-		if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
-			return (ft_putnbr_u((_UL)va_arg(l, _UL), SPE, WID));
+		if (TL(SPE) == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
+			return (ft_putnbr_u((_ULL)va_arg(l, _ULL), SPE, WID, FLA));
 		else
-			return (ft_putnbr((_L)va_arg(l, _L), SPE, WID));
+			return (ft_putnbr((_LL)va_arg(l, _LL), SPE, WID, FLA));
 	}
 	else
 	{
 		if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
-			return (ft_putnbr_u((_ULL)va_arg(l, _ULL), SPE, WID));
+			return (ft_putnbr_u((_ULL)va_arg(l, _ULL), SPE, WID, FLA));
 		else
-			return (ft_putnbr((_LL)va_arg(l, _LL), SPE, WID));
+			return (ft_putnbr((_LL)va_arg(l, _LL), SPE, WID, FLA));
 	}
 }
 
 size_t			i_intmax(va_list l, t_args args, size_t i)
 {
 	if (SPE == 'u' || TL(SPE) == 'x' || TL(SPE) == 'o')
-		return (ft_putnbr_u((_UM)va_arg(l, _UM), SPE, WID));
+		return (ft_putnbr_u((_UM)va_arg(l, _UM), SPE, WID, FLA));
 	else
-		return (ft_putnbr((_M)va_arg(l, _M), SPE, WID));
+		return (ft_putnbr((_M)va_arg(l, _M), SPE, WID, FLA));
 }
 
 size_t			int_types(va_list l, t_args args, size_t i)
 {
-	if (LEN == 0)
+	if (SPE == 'U')
+		return (i_longs(l, args, i));
+	else if (LEN == 0)
 		return (i_ints(l, args, i));
 	else if (LEN == 1 || LEN == -1)
 		return (i_shorts(l, args, i));

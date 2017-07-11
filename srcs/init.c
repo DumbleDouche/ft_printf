@@ -6,17 +6,17 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:47:16 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:55:49 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 22:13:49 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 static inline void	setup_arg(t_arg *arg)
 {
 	arg->index = 0;
 	arg->width = 1;
-	arg->precision = 1;
+	arg->precision = -1;
 	arg->flags = 0;
 	arg->length = 0;
 	arg->specifier = 0;

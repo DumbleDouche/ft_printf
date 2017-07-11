@@ -6,30 +6,11 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 21:24:03 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:55:03 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 23:55:59 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
-#include <unistd.h>
-
-size_t		digits(long nbr, unsigned int base)
-{
-	size_t	i;
-
-	i = 0;
-	if (nbr < 0)
-	{
-		i++;
-		nbr *= -1;
-	}
-	while (nbr)
-	{
-		i++;
-		nbr /= base;
-	}
-	return (i);
-}
+#include "../includes/ft_printf.h"
 
 long long	ft_atoi(const char *str)
 {
@@ -68,20 +49,13 @@ void		ft_putnbr_r(uintmax_t n, size_t base, char l)
 		ft_putchar(l ? HEXU[n] : HEXL[n]);
 }
 
-size_t		ft_putnbr(intmax_t nb, char c, size_t width)
+size_t		ft_putnbr(intmax_t nb, char c, size_t width, char flag)
 {
 	size_t				base;
 	size_t				digi;
-	uintmax_t			ret;
+	intmax_t			ret;
 
-	base = 0;
-	digi = 0;
-	if (TL(c) == 'o')
-		base = 8;
-	else if (TL(c) == 'x')
-		base = 16;
-	else
-		base = 10;
+	base = get_base(c);
 	digi = digits(nb, base);
 	ret = nb;
 	if (nb < 0)
@@ -89,28 +63,39 @@ size_t		ft_putnbr(intmax_t nb, char c, size_t width)
 		ft_putchar('-');
 		ret *= -1;
 	}
-	if (digi < width)
-		ft_nputchar(' ', width - digi);
-	ft_putnbr_r(ret, base, c == 'x' ? 0 : 1);
+	if (flag & 1)
+	{
+		ft_putnbr_r(ret, base, c == 'x' ? 0 : 1);
+		if (digi < width)
+			ft_nputchar(flag & 16 ? '0' : ' ', width - digi);
+	}
+	else
+	{
+		if (digi < width)
+			ft_nputchar(flag & 16 ? '0' : ' ', width - digi);
+		ft_putnbr_r(ret, base, c == 'x' ? 0 : 1);
+	}
 	return (digi > width ? digi : width);
 }
 
-size_t		ft_putnbr_u(uintmax_t nb, char c, size_t width)
+size_t		ft_putnbr_u(uintmax_t nb, char c, size_t width, char flag)
 {
 	size_t				base;
 	size_t				digi;
 
-	base = 0;
-	digi = 0;
-	if (TL(c) == 'o')
-		base = 8;
-	else if (TL(c) == 'x')
-		base = 16;
-	else
-		base = 10;
+	base = get_base(c);
 	digi = digits(nb, base);
-	if (digi < width)
-		ft_nputchar(' ', width - digi);
-	ft_putnbr_r(nb, base, c == 'x' ? 0 : 1);
+	if (flag & 1)
+	{
+		ft_putnbr_r(nb, base, c == 'x' ? 0 : 1);
+		if (digi < width)
+			ft_nputchar(flag & 16 ? '0' : ' ', width - digi);
+	}
+	else
+	{
+		if (digi < width)
+			ft_nputchar(flag & 16 ? '0' : ' ', width - digi);
+		ft_putnbr_r(nb, base, c == 'x' ? 0 : 1);
+	}
 	return (digi > width ? digi : width);
 }

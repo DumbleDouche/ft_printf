@@ -6,11 +6,11 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 10:58:17 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:41:20 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 20:40:16 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int			ft_printf(const char *format, ...)
 {

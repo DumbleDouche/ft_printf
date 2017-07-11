@@ -6,11 +6,11 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:25:20 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:57:53 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 23:29:42 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 char				flag(const char *s, size_t *i)
 {
@@ -21,15 +21,15 @@ char				flag(const char *s, size_t *i)
 	|| s[*i] == '#' || s[*i] == '0'))
 	{
 		if (s[*i] == '-')
-			f = 0b00000001;
+			f |= 0b00000001;
 		else if (s[*i] == '+')
-			f = 0b00000010;
+			f |= 0b00000010;
 		else if (s[*i] == ' ')
-			f = 0b00000100;
+			f |= 0b00000100;
 		else if (s[*i] == '#')
-			f = 0b00001000;
+			f |= 0b00001000;
 		else if (s[*i] == '0')
-			f = 0b00010000;
+			f |= 0b00010000;
 		++(*i);
 	}
 	return (f);
@@ -45,14 +45,14 @@ char				length(const char *s, size_t *i)
 		++(*i);
 		f = 0b00000001;
 		if (s[*i] == 'h' && ++(*i))
-			f = 0b10000001;
+			f = 0b11111111;
 	}
 	else if (s[*i] == 'l')
 	{
 		++(*i);
 		f = 0b00000010;
 		if (s[*i] == 'l' && ++(*i))
-			f = 0b10000010;
+			f = 0b11111110;
 	}
 	else if (s[*i] == 'j' && ++(*i))
 		f = 0b00000100;
@@ -68,13 +68,14 @@ size_t				width(const char *s, size_t *i)
 	ret = ft_atoi(s + *i);
 	while (s[*i] && s[*i] >= '0' && s[*i] <= '9')
 		++(*i);
-	return (ret > 1 ? ret : 1);
+	return (ret);
 }
 
-size_t				precision(const char *s, size_t *i)
+ssize_t				precision(const char *s, size_t *i)
 {
 	size_t		ret;
 
+	ret = -1;
 	if (s[*i] && s[*i] == '.')
 	{
 		++(*i);
@@ -82,15 +83,11 @@ size_t				precision(const char *s, size_t *i)
 	}
 	while (s[*i] && s[*i] >= '0' && s[*i] <= '9')
 		++(*i);
-	return (ret > 1 ? ret : 1);
+	return (ret);
 }
 
 char				specifier(const char *s, size_t *i)
 {
-	if (contains(SPECIFIERS, s[*i]))
-	{
-		(*i) += 2;
-		return (s[*i - 2]);
-	}
-	return (0);
+	++(*i);
+	return (s[*i - 1]);
 }

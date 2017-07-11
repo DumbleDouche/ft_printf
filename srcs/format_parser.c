@@ -6,11 +6,11 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:36:51 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:56:39 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 23:09:59 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int8_t			contains(const char *s, char c)
 {
@@ -96,7 +96,7 @@ t_args			format_string_parser(const char *s)
 			args.list[count].precision = precision(s, &i);
 			args.list[count].length = length(s, &i);
 			args.list[count].specifier = specifier(s, &i);
-			args.list[count].index = i - 1;
+			args.list[count].index = i;
 			++count;
 		}
 		else

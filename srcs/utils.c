@@ -1,30 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data_string.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/11 11:00:21 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:01:07 by rchoquer         ###   ########.fr       */
+/*   Created: 2017/07/11 21:43:44 by rchoquer          #+#    #+#             */
+/*   Updated: 2017/07/11 21:48:44 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/printf.h"
+#include "../includes/ft_printf.h"
 
-size_t			ft_strlen(const char *s)
+size_t		digits(long nbr, unsigned int base)
 {
 	size_t	i;
 
 	i = 0;
-	while (s[i])
-		++i;
+	if (nbr < 0)
+	{
+		i++;
+		nbr *= -1;
+	}
+	else if (nbr == 0)
+		return (1);
+	while (nbr)
+	{
+		i++;
+		nbr /= base;
+	}
 	return (i);
 }
 
-unsigned char	ft_tolower(unsigned char c)
+size_t		get_base(char c)
 {
-	if (c >= 65 && c <= 90)
-		return (c + 32);
-	return (c);
+	if (TL(c) == 'o')
+		return (8);
+	else if (TL(c) == 'x')
+		return (16);
+	else
+		return (10);
 }

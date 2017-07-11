@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 12:41:04 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 11:48:18 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/11 23:36:18 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,9 @@
 # include <inttypes.h>
 # include <stdlib.h>
 
-# include <stdio.h>
-
 # define MALLOC(s, n)		malloc(s * n)
 # define SPECIFIERS			"sSpdDioOuUxXcC%"
-# define INTS				"dioOuxX"
+# define INTS				"dDioOuUxX"
 # define STRS				"sScC"
 # define SPECIAL			"%p"
 # define FLOATS				""
@@ -46,14 +44,13 @@
 # define PRE				args.list[i].precision
 # define LEN				args.list[i].length
 # define SPE				args.list[i].specifier
-# define BASE(c)			TL(c) == 'x' ? 16: TL(c) == 'o' ? 8: 10)
 # define TL(c)				ft_tolower(c)
 
 typedef struct				s_arg
 {
 	size_t			index;
 	size_t			width;
-	size_t			precision;
+	ssize_t			precision;
 	char			flags;
 	char			length;
 	char			specifier;
@@ -75,21 +72,22 @@ size_t						i_shorts(va_list l, t_args args, size_t i);
 size_t						i_ints(va_list l, t_args args, size_t i);
 size_t						i_longs(va_list l, t_args args, size_t i);
 size_t						i_intmax(va_list l, t_args args, size_t i);
+size_t						digits(long nbr, unsigned int base);
+size_t						get_base(char c);
 size_t						string_types(va_list l, t_args args, size_t i);
 size_t						special_types(va_list l, t_args args, size_t i);
 size_t						ft_putchar(char c);
-size_t						ft_wputchar(char c, size_t width);
+size_t						ft_wputchar(char c, size_t width, char fla);
 size_t						ft_nputchar(char c, size_t n);
-size_t						ft_putstr(const char *s, size_t width);
+size_t						ft_putstr(const _C *s, size_t w, ssize_t p, _C f);
 size_t						ft_putnstr(const char *string, size_t size);
-size_t						ft_putnbr(intmax_t nb, char c, size_t width);
-size_t						ft_putnbr_u(uintmax_t nb, char c, size_t width);
+size_t						ft_putnbr(intmax_t nb, char c, size_t w, _C f);
+size_t						ft_putnbr_u(uintmax_t nb, char c, size_t w, _C f);
 size_t						count_args(const char *s);
 size_t						arg_size(const char *s);
 size_t						width(const char *s, size_t *i);
-size_t						precision(const char *s, size_t *i);
+ssize_t						precision(const char *s, size_t *i);
 size_t						loc_conv(const char *s);
-size_t						digits(long nbr, unsigned int base);
 size_t						ft_strlen(const char *s);
 t_args						setup_args(size_t n);
 t_args						format_string_parser(const char *s);
