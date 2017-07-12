@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   output_number.SPE                                    :+:      :+:    :+:   */
+/*   output_number.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 21:24:03 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/12 02:05:40 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/12 07:40:10 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,29 +53,14 @@ size_t		ft_putnbr(intmax_t nb, t_args args, size_t i)
 {
 	size_t				base;
 	size_t				digi;
-	intmax_t			ret;
 
 	base = get_base(SPE);
 	digi = digits(nb, base);
-	ret = nb;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		ret *= -1;
-	}
 	if (FLA & 1)
-	{
-		ft_putnbr_r(ret, base, SPE == 'x' ? 0 : 1);
-		if (digi < WID)
-			ft_nputchar(FLA & 16 ? ' ' : ' ', WID - digi);
-	}
+		digi = putnbr_e_s_1(args, nb, base, i);
 	else
-	{
-		if (digi < WID)
-			ft_nputchar(FLA & 16 ? '0' : ' ', WID - digi);
-		ft_putnbr_r(ret, base, SPE == 'x' ? 0 : 1);
-	}
-	return (digi > WID ? digi : WID);
+		digi = putnbr_e_s_2(args, nb, base, i);
+	return ((digi > WID ? digi : WID) + ((FLA & 2 || FLA & 4) && nb >= 0));
 }
 
 size_t		ft_putnbr_u(uintmax_t nb, t_args args, size_t i)
@@ -84,18 +69,10 @@ size_t		ft_putnbr_u(uintmax_t nb, t_args args, size_t i)
 	size_t				digi;
 
 	base = get_base(SPE);
-	digi = udigits(nb, base);
+	digi = 0;
 	if (FLA & 1)
-	{
-		ft_putnbr_r(nb, base, SPE == 'x' ? 0 : 1);
-		if (digi < WID)
-			ft_nputchar(FLA & 16 ? ' ' : ' ', WID - digi);
-	}
+		digi = putnbr_e_u_1(args, nb, base, i);
 	else
-	{
-		if (digi < WID)
-			ft_nputchar(FLA & 16 ? '0' : ' ', WID - digi);
-		ft_putnbr_r(nb, base, SPE == 'x' ? 0 : 1);
-	}
-	return (digi > WID ? digi : WID);
+		digi = putnbr_e_u_2(args, nb, base, i);
+	return ((digi > WID ? digi : WID));
 }

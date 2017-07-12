@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 12:41:04 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/12 02:05:16 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/12 06:53:03 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define _I					int
 # define _L					long
 # define _LL				long long
+# define _ST				size_t
 # define _M					intmax_t
 # define _UM				uintmax_t
 # define _UC				_U _C
@@ -45,6 +46,7 @@
 # define LEN				args.list[i].length
 # define SPE				args.list[i].specifier
 # define TL(c)				ft_tolower(c)
+# define COMP(a, b)			((_M)(a) > (_M)(b) ? a : b)
 
 typedef struct				s_arg
 {
@@ -66,6 +68,10 @@ typedef struct				s_args
 int							ft_printf(const char *format, ...);
 void						ft_putnbr_r(uintmax_t n, size_t base, char l);
 int8_t						contains(const char *s, char c);
+size_t						putnbr_e_s_1(t_args args, _M nb, size_t b, _ST i);
+size_t						putnbr_e_s_2(t_args args, _M nb, size_t b, _ST i);
+size_t						putnbr_e_u_1(t_args args, _UM nb, size_t b, _ST i);
+size_t						putnbr_e_u_2(t_args args, _UM nb, size_t b, _ST i);
 size_t						core(va_list l, t_args args, size_t i);
 size_t						int_types(va_list l, t_args args, size_t i);
 size_t						i_shorts(va_list l, t_args args, size_t i);

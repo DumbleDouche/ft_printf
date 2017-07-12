@@ -6,7 +6,7 @@
 #    By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/11 00:20:35 by rchoquer          #+#    #+#              #
-#    Updated: 2017/07/12 00:25:40 by rchoquer         ###   ########.fr        #
+#    Updated: 2017/07/12 05:05:04 by rchoquer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ CFLAGS			=	-Wall -Wextra -Werror
 SRC_NAME		=	core.c				format_parser.c		ft_printf.c		\
 					init.c				options.c			output_number.c	\
 					output_string.c		int_types.c			string_types.c	\
-					special_types.c		data_string.c		utils.c
+					special_types.c		data_string.c		utils.c			\
+					putnbr_e.c
 					
 
 OBJ_NAME		=	$(SRC_NAME:.c=.o)

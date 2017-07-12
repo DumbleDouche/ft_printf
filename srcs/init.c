@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:47:16 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/12 01:47:00 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/12 04:52:07 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_args				setup_args(size_t n)
 	args.len = n;
 	args.printed = 0;
 	args.list = (t_arg*)MALLOC(sizeof(t_arg), n);
-	free(args.list);
 	while (i < n)
 	{
 		setup_arg(&(args.list[i]));
