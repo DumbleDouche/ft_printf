@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 12:41:04 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/12 06:53:03 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/14 19:35:26 by l34k             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct				s_arg
 {
 	size_t			index;
 	size_t			width;
-	ssize_t			precision;
+	long int		precision;
 	char			flags;
 	char			length;
 	char			specifier;
@@ -66,6 +66,7 @@ typedef struct				s_args
 }							t_args;
 
 int							ft_printf(const char *format, ...);
+int							hash(unsigned char c);
 void						ft_putnbr_r(uintmax_t n, size_t base, char l);
 int8_t						contains(const char *s, char c);
 size_t						putnbr_e_s_1(t_args args, _M nb, size_t b, _ST i);
@@ -93,7 +94,7 @@ size_t						ft_putnbr_u(_UM nb, t_args args, size_t i);
 size_t						count_args(const char *s);
 size_t						arg_size(const char *s);
 size_t						width(const char *s, size_t *i);
-ssize_t						precision(const char *s, size_t *i);
+long int					precision(const char *s, size_t *i);
 size_t						loc_conv(const char *s);
 size_t						ft_strlen(const char *s);
 t_args						setup_args(size_t n);
@@ -104,6 +105,6 @@ char						length(const char *s, size_t *i);
 char						specifier(const char *s, size_t *i);
 long long					ft_atoi(const char *str);
 unsigned char				ft_tolower(unsigned char c);
-static inline void			setup_arg(t_arg *arg);
+void						setup_arg(t_arg *arg);
 
 #endif

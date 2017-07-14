@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/11 21:43:44 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/12 05:04:11 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/14 19:36:46 by l34k             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ size_t		get_base(char c)
 {
 	if (TL(c) == 'o')
 		return (8);
-	else if (TL(c) == 'x')
+	else if (TL(c) == 'x' || c == 'p')
 		return (16);
 	else
 		return (10);

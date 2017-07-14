@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 04:25:20 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 23:29:42 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/14 19:10:34 by l34k             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,14 @@ size_t				width(const char *s, size_t *i)
 	size_t		ret;
 
 	ret = ft_atoi(s + *i);
-	while (s[*i] && s[*i] >= '0' && s[*i] <= '9')
+	while (s[*i] >= '0' && s[*i] <= '9')
 		++(*i);
 	return (ret);
 }
 
-ssize_t				precision(const char *s, size_t *i)
+long int				precision(const char *s, size_t *i)
 {
-	size_t		ret;
+	long int		ret;
 
 	ret = -1;
 	if (s[*i] && s[*i] == '.')
@@ -81,8 +81,9 @@ ssize_t				precision(const char *s, size_t *i)
 		++(*i);
 		ret = ft_atoi(s + *i);
 	}
-	while (s[*i] && s[*i] >= '0' && s[*i] <= '9')
+	while (s[*i] >= '0' && s[*i] <= '9')
 		++(*i);
+	// printf("ret\\%li/", ret);
 	return (ret);
 }
 

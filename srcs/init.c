@@ -6,13 +6,13 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/09 22:47:16 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/12 04:52:07 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/12 22:38:11 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static inline void	setup_arg(t_arg *arg)
+void	setup_arg(t_arg *arg)
 {
 	arg->index = 0;
 	arg->width = 1;

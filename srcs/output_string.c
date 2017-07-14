@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 21:41:26 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/11 23:49:00 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/14 19:29:43 by l34k             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ size_t			ft_putnstr(const char *string, size_t size)
 	return (size);
 }
 
-size_t			ft_putstr(const char *s, size_t width, ssize_t pre, char flag)
+size_t			ft_putstr(const char *s, size_t width, long int pre, char flag)
 {
 	ssize_t	n;
 
 	n = ft_strlen(s);
-	n = pre != -1 && n > pre ? pre : n;
+	n = pre > 0 && n > pre ? pre : n;
 	if (flag & 1)
 	{
 		ft_putnstr(s, n);
@@ -70,5 +70,5 @@ size_t			ft_putstr(const char *s, size_t width, ssize_t pre, char flag)
 			ft_nputchar(' ', width - n);
 		ft_putnstr(s, n);
 	}
-	return ((size_t)n < width ? width : n);
+	return ((size_t)n < width ? width : (size_t)n);
 }

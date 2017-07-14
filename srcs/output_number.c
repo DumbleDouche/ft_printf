@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/10 21:24:03 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/12 07:40:10 by rchoquer         ###   ########.fr       */
+/*   Updated: 2017/07/14 19:43:43 by l34k             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ long long	ft_atoi(const char *str)
 	return (res);
 }
 
+#include <stdio.h>
+
 void		ft_putnbr_r(uintmax_t n, size_t base, char l)
 {
 	if (n >= base)
@@ -46,7 +48,7 @@ void		ft_putnbr_r(uintmax_t n, size_t base, char l)
 		ft_putnbr_r(n % base, base, l);
 	}
 	else
-		ft_putchar(l ? HEXU[n] : HEXL[n]);
+		ft_putchar(l ? HEXL[n] : HEXU[n]);
 }
 
 size_t		ft_putnbr(intmax_t nb, t_args args, size_t i)
@@ -60,7 +62,7 @@ size_t		ft_putnbr(intmax_t nb, t_args args, size_t i)
 		digi = putnbr_e_s_1(args, nb, base, i);
 	else
 		digi = putnbr_e_s_2(args, nb, base, i);
-	return ((digi > WID ? digi : WID) + ((FLA & 2 || FLA & 4) && nb >= 0));
+	return ((digi > WID ? digi + ((FLA & 2 || FLA & 4) && nb >= 0): WID));
 }
 
 size_t		ft_putnbr_u(uintmax_t nb, t_args args, size_t i)
