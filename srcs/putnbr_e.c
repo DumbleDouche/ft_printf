@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/12 05:04:28 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/14 19:51:28 by l34k             ###   ########.fr       */
+/*   Updated: 2017/07/16 20:26:15 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ size_t		putnbr_e_s_1(t_args args, intmax_t nb, size_t b, size_t i)
 	if (nb < 0)
 		ft_putchar('-');
 	else if (FLA & 2 || FLA & 4)
-		ft_putchar((FLA & 2 ? '+' : ' '));
+		ft_putchar(FLA & 2 ? '+' : ' ');
+	if (PRE > 0 && (size_t)PRE > d)
+		ft_nputchar('0', PRE);
 	ft_putnbr_r(ret, b, 0);
 	if (d < WID)
-		ft_nputchar(' ', WID - d  - (nb >= 0 && !!(FLA & 2) - nb < 0));
+		ft_nputchar(' ', WID - d  - ((nb >= 0 && !!(FLA & 2)) - (nb < 0)));
 	return (d);
 }
 
@@ -36,16 +38,16 @@ size_t		putnbr_e_s_2(t_args args, intmax_t nb, size_t b, size_t i)
 	size_t		size;
 
 	ret = nb < 0 ? -nb : nb;
-	d = udigits(nb, b);
-	size = d + (nb >= 0 && !!(FLA & 2) - nb < 0);
+	d = udigits(ret, b);
+	size = COMP((PRE != -1 ? PRE : 0), d) + ((nb >= 0 && !!(FLA & 2)) + (nb < 0));
 	if (size < WID)
 		ft_nputchar(FLA & 16 ? '0' : ' ', WID - size);
 	if (nb < 0)
 		ft_putchar('-');
 	else if (FLA & 2 || FLA & 4)
 		ft_putchar((FLA & 2  && PRE < 0 ? '+' : ' '));
-	if (PRE > 0 && (size_t)PRE > d)
-		ft_nputchar('0', PRE);
+	if (PRE >= 0 && (size_t)PRE > d)
+		ft_nputchar('0', PRE - d);
 	ft_putnbr_r(ret, b, 0);
 	return (size);
 }
@@ -59,7 +61,7 @@ size_t		putnbr_e_u_1(t_args args, uintmax_t nb, size_t b, size_t i)
 	size = d;
 	if (FLA & 8 && nb != 0)
 		size += hash(SPE);
-	if (PRE < 0 && (size_t)PRE > d)
+	if (PRE > 0 && (size_t)PRE > d)
 		size += ft_nputchar('0', PRE - d);
 	ft_putnbr_r(nb, b, SPE == 'x' || SPE == 'p');
 	if (size < WID)
@@ -73,8 +75,8 @@ size_t		putnbr_e_u_2(t_args args, uintmax_t nb, size_t b, size_t i)
 	size_t		size;
 
 	d = udigits(nb, b);
-	size = d + ((FLA & 8 && TL(SPE != 'u') && nb != 0) ? (TL(SPE) == 'x') + 1 : 0) + (PRE > 0 &&
-		(size_t)PRE > d ? PRE - d : 0);
+	size = d + (((FLA & 8) && TL(SPE != 'u') && (nb != 0)) ? (TL(SPE) == 'x')
+	+ 1 : 0) + (PRE > 0 && (size_t)PRE > d ? PRE - d : 0);
 	if (size < WID)
 		ft_nputchar(FLA & 16 && PRE < 0 ? '0' : ' ', WID - size);
 	if (FLA & 8 && nb != 0)
