@@ -6,7 +6,7 @@
 /*   By: rchoquer <rchoquer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/09 12:41:04 by rchoquer          #+#    #+#             */
-/*   Updated: 2017/07/14 19:35:26 by l34k             ###   ########.fr       */
+/*   Updated: 2017/07/19 15:48:14 by rchoquer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define LEN				args.list[i].length
 # define SPE				args.list[i].specifier
 # define TL(c)				ft_tolower(c)
-# define COMP(a, b)			((_M)(a) > (_M)(b) ? a : b)
+# define COMP(a, b)			((_M)(a) > (_M)(b) ? (_M)(a) : (_M)(b))
 
 typedef struct				s_arg
 {
